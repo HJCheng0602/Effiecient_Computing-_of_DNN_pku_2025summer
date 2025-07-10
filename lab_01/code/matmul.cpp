@@ -11,9 +11,9 @@ double get_time() {
   return tv.tv_sec + 1e-6 * tv.tv_usec;
 }
 
-constexpr int I = 256;
-constexpr int K = 256;
-constexpr int J = 256;
+constexpr int I = 1024;
+constexpr int K = 1024;
+constexpr int J = 1024;
 int A[I][K];
 int B[K][J];
 int BT[J][K];
