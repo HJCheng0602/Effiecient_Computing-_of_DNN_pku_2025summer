@@ -158,6 +158,7 @@ void matmul_ikj_write_optimized() {
     }
 }
 // 向量化 (Vectorization (SIMD)) - 使用 ARM NEON Intrinsics
+#ifdef __ARM_NEON__
 void matmul_simd() {
     memset(C, 0, sizeof(C));
     constexpr int SIMD_WIDTH = 4; // 128位NEON向量包含4个32位整数
@@ -175,6 +176,19 @@ void matmul_simd() {
         }
     }
 }
+#else
+void matmul_simd() {
+    // Fallback to normal matmul if NEON is not available
+    memset(C, 0, sizeof(C));
+    for (int i = 0; i < I; ++i) {
+        for (int k = 0; k < K; ++k) {
+            for (int j = 0; j < J; ++j) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+#endif
 // 数组打包 (Array packing) - 通过转置BT来优化B的访问模式
 void matmul_BT_optimized() {
   memset(C, 0, sizeof(C));

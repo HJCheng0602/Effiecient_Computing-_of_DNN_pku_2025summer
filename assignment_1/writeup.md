@@ -463,7 +463,7 @@ W_0 = [[1, 2],
 | 2       | 2      | (0, 0, 1, 0)                      | 0       |
 
 ```cpp
-// 假设这是稀疏卷积引擎的伪代码
+// 假设这是稀疏卷积的伪代码
 // output_hash_table[out_idx] 存储输出索引对应的值
 
 // 初始化 output_hash_table[0].Current_Value = 0
